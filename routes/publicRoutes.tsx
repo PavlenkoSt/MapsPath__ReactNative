@@ -1,23 +1,45 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack'
 import Home from '../screens/Home'
 import Path from '../screens/Path'
-
-const publicRoutes = [
-  { name: 'Home', component: Home },
-  { name: 'Path', component: Path },
-]
+import Header from '../components/Header'
 
 const Stack = createNativeStackNavigator()
+
+const pathHeaderStyles = {
+  headerStyle: {
+    backgroundColor: '#f4511e',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+}
 
 const PublicRoutes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        {publicRoutes.map((route) => (
-          <Stack.Screen key={route.name} {...route} />
-        ))}
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerTitle: () => <Header />,
+            ...(pathHeaderStyles as NativeStackNavigationOptions),
+          }}
+        />
+        <Stack.Screen
+          name="Path"
+          component={Path}
+          options={({ route }: any) => ({
+            title: route?.params?.title || 'Path',
+            ...(pathHeaderStyles as NativeStackNavigationOptions),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

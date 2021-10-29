@@ -18,11 +18,11 @@ import PublicRoutes from './routes/publicRoutes'
 const App = () => {
   return (
     <Provider {...store}>
-        {/* <StatusBar />
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          
-        </ScrollView> */}
-        <PublicRoutes/>
+      {/* <StatusBar />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        
+      </ScrollView> */}
+      <PublicRoutes/>
     </Provider>
   )
 }

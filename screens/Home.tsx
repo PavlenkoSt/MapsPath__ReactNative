@@ -1,8 +1,20 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React, { FC } from 'react'
+import { Button, Text } from 'react-native'
 
-const Home = () => {
-  return <Text>Home page</Text>
+type HomePropsType = {
+  navigation: any
+}
+
+const Home: FC<HomePropsType> = ({ navigation }) => {
+  return (
+    <>
+      <Text>Home page</Text>
+      <Button
+        onPress={() => navigation.navigate('Path', { title: 'Custom title' })}
+        title="push to Path"
+      />
+    </>
+  )
 }
 
 export default Home
