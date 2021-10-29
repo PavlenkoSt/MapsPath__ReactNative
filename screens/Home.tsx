@@ -10,6 +10,8 @@ type HomePropsType = {
 const Home: FC<HomePropsType> = ({ navigation }) => {
   const toPathPage = (title: string) => navigation.navigate('Path', { title })
 
+  
+
   return (
     <ScrollView>
       <Search />
