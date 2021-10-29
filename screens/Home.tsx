@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Button, ScrollView, StyleSheet, Text } from 'react-native'
+import { Button, Image, ScrollView, StyleSheet, Text } from 'react-native'
 import PathList from '../components/PathList'
 
 type HomePropsType = {
