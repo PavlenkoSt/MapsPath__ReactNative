@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
 import { useStore } from '../store'
@@ -20,4 +21,4 @@ const PathList: FC<PathListPropsPage> = ({toPathPage}) => {
   )
 }
 
-export default PathList
+export default observer(PathList)
