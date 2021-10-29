@@ -1,10 +1,18 @@
 import React from 'react'
-import { View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { useStore } from '../store'
+import PathItem from './PathItem'
 
 const PathList = () => {
-  const {} = useStore()
-  return <View></View>
+  const { routesStore } = useStore()
+
+  return (
+    <ScrollView>
+      {routesStore.routes.map((route) => (
+        <PathItem key={route.id} />
+      ))}
+    </ScrollView>
+  )
 }
 
 export default PathList

@@ -1,13 +1,39 @@
 import { action, makeAutoObservable, observable } from 'mobx'
+import IRoute from '../models/Route'
 
 class Routes {
-  @observable routes = []
+  @observable routes: IRoute[] = [
+    {
+      id: '1',
+      favourite: false,
+      fullDesc: 'full desc',
+      length: 200,
+      markers: [],
+      shortDesc: 'short desc',
+      title: 'title',
+    },
+  ]
 
   constructor() {
     makeAutoObservable(this)
   }
 
+  @action setRoutes(routes: IRoute[]) {
+    this.routes = routes
+  }
 
+  @action addRoute(route: IRoute) {
+    this.routes.push(route)
+  }
+
+  @action removeRoute(id: string) {
+    this.routes = this.routes.filter((route) => route.id !== id)
+  }
+
+  @action toggleFavouriteRoute(id: string) {
+    const target = this.routes.find((route) => route.id === id)
+    if (target) target.favourite = !target.favourite
+  }
 }
 
 const routesStore = new Routes()
