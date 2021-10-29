@@ -1,8 +1,10 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 
 const Path = () => {
-  return <ScrollView>Path page</ScrollView>
+  return <ScrollView>
+    <Text>Path page</Text>
+  </ScrollView>
 }
 
 export default Path

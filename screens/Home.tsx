@@ -7,17 +7,14 @@ type HomePropsType = {
 }
 
 const Home: FC<HomePropsType> = ({ navigation }) => {
+
+  const toPathPage = (title: string) => navigation.navigate('Path', { title })
+
   return (
     <ScrollView>
-      <PathList />
-      <Button
-        onPress={() => navigation.navigate('Path', { title: 'Custom title' })}
-        title="push to Path"
-      />
+      <PathList toPathPage={toPathPage} />
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({})
 
 export default Home

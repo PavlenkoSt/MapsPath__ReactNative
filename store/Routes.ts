@@ -5,11 +5,11 @@ class Routes {
   @observable routes: IRoute[] = [
     {
       id: '1',
-      favourite: false,
+      favourite: true,
       fullDesc: 'full desc',
       length: 200,
       markers: [],
-      shortDesc: 'short desc',
+      shortDesc: 'short desc short desc short desc short desc short desc short desc short desc short desc',
       title: 'title',
     },
   ]
