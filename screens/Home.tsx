@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { Button, Text } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text } from 'react-native'
+import PathList from '../components/PathList'
 
 type HomePropsType = {
   navigation: any
@@ -7,14 +8,16 @@ type HomePropsType = {
 
 const Home: FC<HomePropsType> = ({ navigation }) => {
   return (
-    <>
-      <Text>Home page</Text>
+    <ScrollView>
+      <PathList />
       <Button
         onPress={() => navigation.navigate('Path', { title: 'Custom title' })}
         title="push to Path"
       />
-    </>
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({})
 
 export default Home

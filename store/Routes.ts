@@ -1,7 +1,7 @@
 import { action, makeAutoObservable, observable } from 'mobx'
 
 class Routes {
-  @observable test: number = 20
+  @observable routes = []
 
   constructor() {
     makeAutoObservable(this)

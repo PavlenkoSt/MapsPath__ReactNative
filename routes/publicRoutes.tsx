@@ -12,12 +12,13 @@ const Stack = createNativeStackNavigator()
 
 const pathHeaderStyles = {
   headerStyle: {
-    backgroundColor: '#f4511e',
+    backgroundColor: '#EBA649',
   },
   headerTintColor: '#fff',
   headerTitleStyle: {
     fontWeight: 'bold',
   },
+  contentStyle: { padding: 10, backgroundColor: '#EBFFFC' },
 }
 
 const PublicRoutes = () => {

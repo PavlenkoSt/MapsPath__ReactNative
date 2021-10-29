@@ -19,10 +19,8 @@ const App = () => {
   return (
     <Provider {...store}>
       {/* <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        
-      </ScrollView> */}
-      <PublicRoutes/>
+       */}
+      <PublicRoutes />
     </Provider>
   )
 }
