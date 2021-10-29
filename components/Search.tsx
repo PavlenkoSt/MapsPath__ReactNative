@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextInput, StyleSheet, View, Image } from 'react-native'
 
-const Sort = () => {
+const Search = () => {
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} />
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Sort
+export default Search

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { Button, Image, ScrollView, StyleSheet, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import PathList from '../components/PathList'
-import Sort from '../components/Sort'
+import Search from '../components/Search'
 
 type HomePropsType = {
   navigation: any
@@ -12,7 +12,7 @@ const Home: FC<HomePropsType> = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Sort />
+      <Search />
       <PathList toPathPage={toPathPage} />
     </ScrollView>
   )
