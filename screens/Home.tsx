@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
 import PathList from '../components/PathList'
 import Search from '../components/Search'
+import useSearch from '../hooks/useSearch'
+import { useStore } from '../store'
 
 type HomePropsType = {
   navigation: any
@@ -10,12 +12,14 @@ type HomePropsType = {
 const Home: FC<HomePropsType> = ({ navigation }) => {
   const toPathPage = (title: string) => navigation.navigate('Path', { title })
 
-  
+  const { routesStore } = useStore()
+
+  const { searchedRoutes, setSearchVal } = useSearch(routesStore.routes)
 
   return (
     <ScrollView>
-      <Search />
-      <PathList toPathPage={toPathPage} />
+      <Search setSearchVal={setSearchVal} />
+      <PathList toPathPage={toPathPage} routes={searchedRoutes} />
     </ScrollView>
   )
 }

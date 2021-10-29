@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import { TextInput, StyleSheet, View, Image } from 'react-native'
 
-const Search = () => {
+type SearchPropsType = {
+  setSearchVal: Dispatch<SetStateAction<string>>
+}
+
+const Search: FC<SearchPropsType> = ({ setSearchVal }) => {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} />
+      <TextInput style={styles.input} onChangeText={(text) => setSearchVal(text)} />
       <Image style={styles.img} source={require('../icons/search.png')} />
     </View>
   )
@@ -16,7 +20,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 10,
     fontSize: 20,
-    paddingRight: 40
+    paddingRight: 40,
   },
   container: {
     position: 'relative',
@@ -28,8 +32,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '50%',
     right: 10,
-    transform: [{ translateY: -10 }]
-  }
+    transform: [{ translateY: -10 }],
+  },
 })
 
 export default Search
