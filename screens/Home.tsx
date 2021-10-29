@@ -10,7 +10,7 @@ type HomePropsType = {
 }
 
 const Home: FC<HomePropsType> = ({ navigation }) => {
-  const toPathPage = (title: string) => navigation.navigate('Path', { title })
+  const toPathPage = (title: string, id: string) => navigation.navigate('Path', { title, id })
 
   const { routesStore } = useStore()
 

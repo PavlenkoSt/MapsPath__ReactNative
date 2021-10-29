@@ -5,7 +5,7 @@ import IRoute from '../models/Route'
 import PathItem from './PathItem'
 
 type PathListPropsPage = {
-  toPathPage: (title: string) => void
+  toPathPage: (title: string, id: string) => void
   routes: IRoute[]
 }
 

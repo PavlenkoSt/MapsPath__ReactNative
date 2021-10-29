@@ -4,12 +4,12 @@ import IRoute from '../models/Route'
 
 type PathItemPropsType = {
   route: IRoute
-  toPathPage: (title: string) => void
+  toPathPage: (title: string, id: string) => void
 }
 
 const PathItem: FC<PathItemPropsType> = ({ route, toPathPage }) => {
   return (
-    <TouchableOpacity onPress={() => toPathPage(route.title)}>
+    <TouchableOpacity onPress={() => toPathPage(route.title, route.id)}>
       <View style={styles.item}>
         <Image style={styles.imgLogo} source={require('../icons/location.png')} />
         <View style={styles.center}>
