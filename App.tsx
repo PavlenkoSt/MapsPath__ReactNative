@@ -9,19 +9,24 @@
  */
 
 import React from 'react'
+import { Provider } from 'mobx-react'
+import store from './store'
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { observer } from 'mobx-react-lite'
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Text>1</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider {...store}>
+      <SafeAreaView>
+        <StatusBar />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          
+        </ScrollView>
+      </SafeAreaView>
+    </Provider>
   )
 }
 
 const styles = StyleSheet.create({})
 
-export default App
+export default observer(App)
