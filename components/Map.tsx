@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 import IMarker from '../models/marker'
 
@@ -60,7 +60,10 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength }) => {
           strokeWidth={2}
         />
       </MapView>
-      <Text style={styles.length}>Lenght: {length}</Text>
+      <View style={styles.footer}>
+        <Image source={require('../icons/location.png')} style={styles.pic} />
+        <Text style={styles.length}>Lenght: {length}</Text>
+      </View>
     </View>
   )
 }
@@ -71,10 +74,19 @@ const styles = StyleSheet.create({
     height: 400,
     marginBottom: 10,
   },
-  length: {
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 10,
-    textAlign: 'center',
+  },
+  length: {
     fontSize: 20,
+  },
+  pic: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
 })
 
