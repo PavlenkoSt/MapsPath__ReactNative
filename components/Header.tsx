@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Button, Image, StyleSheet, Text, View } from 'react-native'
 
-//@ts-ignore
-const Header = ({ navigator }) => {
+type HeaderPropsType = {
+  navigator: any
+}
+
+const Header: FC<HeaderPropsType> = ({ navigator }) => {
   return (
     <View style={styles.main}>
       <View style={styles.logo}>
