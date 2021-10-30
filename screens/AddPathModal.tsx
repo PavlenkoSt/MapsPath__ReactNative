@@ -1,10 +1,13 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, Text } from 'react-native'
+import AddPathForm from '../components/AddPathForm'
 
 const AddPathModal = () => {
-  return <View>
-    <Text>Modal</Text>
-  </View>
+  return (
+    <ScrollView>
+      <AddPathForm />
+    </ScrollView>
+  )
 }
 
 export default AddPathModal
