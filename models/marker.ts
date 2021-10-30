@@ -1,6 +1,6 @@
 interface IMarker {
-  lat: number
-  lng: number
+  latitude: number
+  longitude: number
   id: number
 }
 

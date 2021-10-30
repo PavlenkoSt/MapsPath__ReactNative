@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import { StyleSheet } from 'react-native'
 import MapView, { Marker } from 'react-native-maps'
+import IMarker from '../models/marker'
 
-const Map = () => {
-  const markers = [0]
+type MapPropsType = {
+  setMarkers: Dispatch<SetStateAction<IMarker[]>>
+  markers: IMarker[]
+}
+
+const Map: FC<MapPropsType> = ({ setMarkers, markers }) => {
+  const addMarker = (coordinates: { latitude: number; longitude: number }) => {
+    setMarkers([...markers, { ...coordinates, id: Date.now() }])
+  }
 
   return (
     <MapView
@@ -14,13 +22,14 @@ const Map = () => {
         longitudeDelta: 0.0421,
       }}
       style={styles.map}
+      onPress={(e) => addMarker(e.nativeEvent.coordinate)}
     >
-      {markers.map((marker, index) => (
+      {markers.map((marker) => (
         <Marker
-          key={index}
+          key={marker.id}
           coordinate={{
-            latitude: 49.4284,
-            longitude: 32.0621,
+            latitude: marker.latitude,
+            longitude: marker.longitude,
           }}
         />
       ))}
