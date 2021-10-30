@@ -8,8 +8,6 @@ import IMarker from '../models/marker'
 const AddPathModal = () => {
   const [markers, setMarkers] = useState([] as IMarker[])
 
-  
-
   return (
     <ScrollView>
       <Map setMarkers={setMarkers} markers={markers} />

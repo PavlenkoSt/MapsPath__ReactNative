@@ -1,6 +1,6 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import { StyleSheet } from 'react-native'
-import MapView, { Marker } from 'react-native-maps'
+import MapView, { Marker, Polyline } from 'react-native-maps'
 import IMarker from '../models/marker'
 
 type MapPropsType = {
@@ -33,6 +33,11 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers }) => {
           }}
         />
       ))}
+      <Polyline
+        coordinates={markers.map(marker => ({ longitude: marker.longitude, latitude: marker.latitude }))}
+        strokeColor='#c41d25'
+        strokeWidth={2}
+      />
     </MapView>
   )
 }
