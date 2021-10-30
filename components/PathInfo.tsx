@@ -13,10 +13,11 @@ const PathInfo: FC<PathInfoPropsType> = ({ route }) => {
 
   return (
     <View>
-      <View>
-        <Text>{route.title}</Text>
-        <Text>{route.length}</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>{route.title}</Text>
+        <Text style={styles.length}>{route.length}</Text>
       </View>
+      <Text style={styles.desc} >{route.fullDesc}</Text>
     </View>
   )
 }
@@ -25,6 +26,25 @@ const styles = StyleSheet.create({
   error: {
     textAlign: 'center',
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10
+  },
+  title: {
+    color: '#333',
+    fontSize: 30,
+    fontWeight: '700'
+  },
+  length: {
+    color: '#333',
+    fontSize: 20,
+  },
+  desc:{
+    fontSize: 20,
+    marginBottom: 10
+  }
 })
 
 export default PathInfo

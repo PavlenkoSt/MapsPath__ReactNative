@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
@@ -7,6 +6,8 @@ import {
 import Home from '../screens/Home'
 import Path from '../screens/Path'
 import Header from '../components/Header'
+import AddPathModal from '../screens/AddPathModal'
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native'
 
 const Stack = createNativeStackNavigator()
 
@@ -22,25 +23,36 @@ const pathHeaderStyles = {
 }
 
 const PublicRoutes = () => {
+  const navigatorRef = useNavigationContainerRef()
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigatorRef}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            headerTitle: () => <Header />,
-            ...(pathHeaderStyles as NativeStackNavigationOptions),
-          }}
-        />
-        <Stack.Screen
-          name="Path"
-          component={Path}
-          options={({ route }: any) => ({
-            title: route?.params?.title || 'Path',
-            ...(pathHeaderStyles as NativeStackNavigationOptions),
-          })}
-        />
+        <Stack.Group>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerTitle: () => <Header navigator={navigatorRef} />,
+              ...(pathHeaderStyles as NativeStackNavigationOptions),
+            }}
+          />
+          <Stack.Screen
+            name="Path"
+            component={Path}
+            options={({ route }: any) => ({
+              title: route?.params?.title || 'Path',
+              ...(pathHeaderStyles as NativeStackNavigationOptions),
+            })}
+          />
+        </Stack.Group>
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+          <Stack.Screen
+            name="AddPathModal"
+            component={AddPathModal}
+            options={{ title: 'Add new path' }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   )

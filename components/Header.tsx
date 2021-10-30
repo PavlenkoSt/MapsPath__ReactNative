@@ -1,17 +1,15 @@
 import React from 'react'
 import { Button, Image, StyleSheet, Text, View } from 'react-native'
 
-const Header = () => {
+//@ts-ignore
+const Header = ({ navigator }) => {
   return (
     <View style={styles.main}>
       <View style={styles.logo}>
         <Text style={styles.textLogo}>Saunter</Text>
-        <Image
-          style={styles.imgLogo}
-          source={require('../icons/logo.png')}
-        />
+        <Image style={styles.imgLogo} source={require('../icons/logo.png')} />
       </View>
-      <Button title="Add path" />
+      <Button title="Add path" onPress={() => navigator.navigate('AddPathModal')} />
     </View>
   )
 }
@@ -26,13 +24,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   textLogo: {
     color: '#fff',
     fontWeight: '700',
     fontSize: 20,
-    marginRight: 10
+    marginRight: 10,
   },
   imgLogo: {
     width: 25,
