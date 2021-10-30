@@ -1,9 +1,20 @@
 import React from 'react'
 import { Button, StyleSheet, TextInput, View } from 'react-native'
 import { Formik } from 'formik'
+import Toast from 'react-native-toast-message'
 
 const AddPathForm = () => {
-  const onSubmit = (values: any) => console.log(values)
+  const onSubmit = (values: any) => {
+    if (!values.title || !values.shortDesc || !values.fullDesc) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Fill in all the fields',
+      })
+      return
+    }
+    console.log(values)
+  }
 
   return (
     <Formik initialValues={{ title: '', shortDesc: '', fullDesc: '' }} onSubmit={onSubmit}>
@@ -14,7 +25,7 @@ const AddPathForm = () => {
             onBlur={handleBlur('title')}
             value={values.title}
             style={styles.input}
-            placeholder='Title'
+            placeholder="Title"
           />
           <TextInput
             onChangeText={handleChange('shortDesc')}
@@ -23,7 +34,7 @@ const AddPathForm = () => {
             multiline={true}
             style={styles.input}
             numberOfLines={2}
-            placeholder='Short description'
+            placeholder="Short description"
           />
           <TextInput
             onChangeText={handleChange('fullDesc')}
@@ -32,7 +43,7 @@ const AddPathForm = () => {
             multiline={true}
             style={styles.input}
             numberOfLines={4}
-            placeholder='Full description'
+            placeholder="Full description"
           />
           <Button onPress={handleSubmit} title="Add path" />
         </View>
@@ -48,7 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     fontSize: 18,
     marginBottom: 5,
-    color: '#333'
+    color: '#333',
   },
 })
 
