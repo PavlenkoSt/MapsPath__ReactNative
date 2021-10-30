@@ -50,7 +50,10 @@ const PublicRoutes = () => {
           <Stack.Screen
             name="AddPathModal"
             component={AddPathModal}
-            options={{ title: 'Add new path' }}
+            options={{
+              title: 'Add new path',
+              ...(pathHeaderStyles as NativeStackNavigationOptions),
+            }}
           />
         </Stack.Group>
       </Stack.Navigator>

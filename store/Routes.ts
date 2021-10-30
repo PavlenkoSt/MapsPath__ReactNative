@@ -15,7 +15,7 @@ class Routes {
     },
     {
       id: '2',
-      favourite: true,
+      favourite: false,
       fullDesc: 'full desc 2',
       length: 200,
       markers: [],

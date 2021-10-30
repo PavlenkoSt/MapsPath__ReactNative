@@ -15,7 +15,7 @@ const PathItem: FC<PathItemPropsType> = ({ route, toPathPage }) => {
         <View style={styles.center}>
           <View style={styles.header}>
             <Text style={styles.title}>{route.title}</Text>
-            <Image style={styles.star} source={require('../icons/star.png')} />
+            {route.favourite && <Image style={styles.star} source={require('../icons/star.png')} />}
           </View>
           <Text numberOfLines={1} style={styles.desc}>
             {route.shortDesc}
