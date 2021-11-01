@@ -10,19 +10,17 @@
 
 import React, { useEffect } from 'react'
 import { Provider } from 'mobx-react'
-import store from './store'
+import store, { useStore } from './store'
 import { observer } from 'mobx-react-lite'
 import PublicRoutes from './routes/publicRoutes'
 import Toast from 'react-native-toast-message'
 import realm from './realm'
 
 const App = () => {
+  const { routesStore } = useStore()
+
   useEffect(() => {
-    const test = async () => {
-      const { getAllRoutes } = await realm
-      getAllRoutes()
-    }
-    test()
+    routesStore.setRoutesFromDB()
   }, [])
 
   return (

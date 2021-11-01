@@ -18,11 +18,11 @@ type CoordinatesType = { latitude: number; longitude: number }
 const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMode }) => {
   const addMarker = (coordinates: CoordinatesType) => {
     if (editMode && setMarkers) {
-      setMarkers([...markers, { ...coordinates, id: Date.now() }])
+      setMarkers([...markers, { ...coordinates, id: Date.now().toString() }])
     }
   }
 
-  const changeMarkerPosition = (id: number, newPosition: CoordinatesType) => {
+  const changeMarkerPosition = (id: string, newPosition: CoordinatesType) => {
     if (editMode && setMarkers) {
       setMarkers(
         markers.map((marker) => {

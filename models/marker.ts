@@ -1,7 +1,7 @@
 interface IMarker {
   latitude: number
   longitude: number
-  id: number
+  id: string
 }
 
 export default IMarker

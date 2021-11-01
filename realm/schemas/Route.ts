@@ -4,7 +4,7 @@ import MarkerSchema from './Marker'
 const RoutesSchema: ObjectSchema = {
   name: 'Route',
   properties: {
-    _id: { type: 'string' },
+    id: { type: 'string' },
     title: { type: 'string' },
     shortDesc: { type: 'string' },
     fullDesc: { type: 'string' },
@@ -12,7 +12,7 @@ const RoutesSchema: ObjectSchema = {
     favourite: { type: 'bool' },
     markers: { type: 'list', objectType: 'Marker' }
   },
-  primaryKey: '_id',
+  primaryKey: 'id',
 }
 
 export default RoutesSchema

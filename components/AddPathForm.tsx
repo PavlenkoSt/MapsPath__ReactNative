@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import IMarker from '../models/marker'
 import { useStore } from '../store'
 import toast from '../utilts/toast'
+import realm from '../realm'
 
 type AddPathFormPropsType = {
   markers: IMarker[]
@@ -24,7 +25,7 @@ const AddPathForm: FC<AddPathFormPropsType> = ({
 
   const { routesStore } = useStore()
 
-  const onSubmit = (values: any, { resetForm }: any) => {
+  const onSubmit = async (values: any, { resetForm }: any) => {
     if (!values.title || !values.shortDesc || !values.fullDesc) {
       return toast.showError('Fill in all the fields')
     }
@@ -39,13 +40,17 @@ const AddPathForm: FC<AddPathFormPropsType> = ({
 
     const id = Date.now().toString()
 
-    routesStore.addRoute({
+    const route = {
       favourite: false,
       id,
       markers,
       length,
       ...values,
-    })
+    }
+
+    routesStore.addRoute(route)
+
+    await (await realm).addRoute(route)
 
     setMarkers([])
     setLength(0)

@@ -1,5 +1,6 @@
 import { action, computed, makeAutoObservable, observable } from 'mobx'
 import IRoute from '../models/Route'
+import realm from '../realm'
 
 class Routes {
   @observable routes: IRoute[] = []
@@ -27,6 +28,11 @@ class Routes {
 
   @action getRouteById(id: string) {
     return this.routes.find((route) => route.id === id)
+  }
+
+  @action async setRoutesFromDB (){
+    const routes = await (await realm).getAllRoutes()
+    this.setRoutes(routes as unknown as IRoute[])
   }
 
   @computed get sortedRoutes () {
