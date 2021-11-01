@@ -10,9 +10,16 @@ type AddPathFormPropsType = {
   length: number
   setMarkers: Dispatch<SetStateAction<IMarker[]>>
   setLength: Dispatch<SetStateAction<number>>
+  navigation: any
 }
 
-const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length, setMarkers, setLength }) => {
+const AddPathForm: FC<AddPathFormPropsType> = ({
+  markers,
+  length,
+  setMarkers,
+  setLength,
+  navigation,
+}) => {
   const [limit, setLimit] = useState(0)
 
   const { routesStore } = useStore()
@@ -26,13 +33,15 @@ const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length, setMarkers, se
       return toast.showError("Short description can't be more then 160")
     }
 
-    if (markers.length < 2){
-      return toast.showError("You should add 2 or more markers on map")
+    if (markers.length < 2) {
+      return toast.showError('You should add 2 or more markers on map')
     }
+
+    const id = Date.now().toString()
 
     routesStore.addRoute({
       favourite: false,
-      id: Date.now().toString(),
+      id,
       markers,
       length,
       ...values,
@@ -41,6 +50,8 @@ const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length, setMarkers, se
     setMarkers([])
     setLength(0)
     resetForm()
+
+    navigation.navigate('Path', { title: values.title, id })
 
     return toast.showSuccess('Route was added')
   }

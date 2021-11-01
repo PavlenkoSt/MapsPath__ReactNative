@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#EDEDED',
     marginBottom: 10,
+    flex: 1
   },
   imgLogo: {
     width: 50,
