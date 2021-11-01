@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import IRoute from '../models/Route'
+import convertUnit from '../utilts/convertUnit'
 
 type PathInfoPropsType = {
   route: IRoute | undefined
@@ -14,10 +15,13 @@ const PathInfo: FC<PathInfoPropsType> = ({ route }) => {
   return (
     <View>
       <View style={styles.header}>
-        <Text style={styles.title}>{route.title}</Text>
-        <Text style={styles.length}>{route.length}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{route.title}</Text>
+          {route.favourite && <Image source={require('../icons/star.png')} style={styles.fav} />}
+        </View>
+        <Text style={styles.length}>{convertUnit(route.length)}</Text>
       </View>
-      <Text style={styles.desc} >{route.fullDesc}</Text>
+      <Text style={styles.desc}>{route.fullDesc}</Text>
     </View>
   )
 }
@@ -30,21 +34,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10
+    marginBottom: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
     color: '#333',
     fontSize: 30,
-    fontWeight: '700'
+    fontWeight: '700',
+    marginRight: 5,
+  },
+  fav: {
+    width: 20,
+    height: 20,
   },
   length: {
     color: '#333',
     fontSize: 20,
   },
-  desc:{
+  desc: {
     fontSize: 20,
-    marginBottom: 10
-  }
+    marginBottom: 10,
+  },
 })
 
 export default PathInfo

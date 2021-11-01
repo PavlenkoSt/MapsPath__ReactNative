@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
 import PathList from '../components/PathList'
@@ -24,4 +25,4 @@ const Home: FC<HomePropsType> = ({ navigation }) => {
   )
 }
 
-export default Home
+export default observer(Home)

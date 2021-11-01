@@ -1,6 +1,8 @@
+import { observer } from 'mobx-react'
 import React, { FC } from 'react'
 import { ScrollView, Text } from 'react-native'
 import Map from '../components/Map'
+import PathActions from '../components/PathActions'
 import PathInfo from '../components/PathInfo'
 import { useStore } from '../store'
 
@@ -21,8 +23,9 @@ const Path: FC<PathPropsType> = ({ route }) => {
     <ScrollView>
       <PathInfo route={activeRoute} />
       <Map editMode={false} markers={activeRoute.markers} length={activeRoute.length} />
+      <PathActions id={activeRoute.id} favourite={activeRoute.favourite} />
     </ScrollView>
   )
 }
 
-export default Path
+export default observer(Path)

@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import React, { FC } from 'react'
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import IRoute from '../models/Route'
@@ -83,4 +84,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PathItem
+export default observer(PathItem)
