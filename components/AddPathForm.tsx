@@ -1,29 +1,33 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
 import { Formik } from 'formik'
-import Toast from 'react-native-toast-message'
+import IMarker from '../models/marker'
+import { useStore } from '../store'
+import toast from '../utilts/toast'
 
-const AddPathForm = () => {
+
+type AddPathFormPropsType = {
+  markers: IMarker[]
+}
+
+const AddPathForm: FC<AddPathFormPropsType> = ({ markers }) => {
   const [limit, setLimit] = useState(0)
 
-  const showError = (message: string) => {
-    Toast.show({
-      type: 'error',
-      position: 'bottom',
-      text1: 'Error',
-      text2: message,
-    })
-  }
+  const { routesStore } = useStore()
 
   const onSubmit = (values: any) => {
     if (!values.title || !values.shortDesc || !values.fullDesc) {
-      return showError('Fill in all the fields')
+      return toast.showError('Fill in all the fields')
     }
 
     if (limit > 160) {
-      return showError('Short description can\'t be more then 160')
+      return toast.showError('Short description can\'t be more then 160')
     }
     console.log(values)
+
+    // routesStore.addRoute({
+
+    // })
   }
 
   return (

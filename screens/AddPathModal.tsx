@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native'
 import Toast from 'react-native-toast-message'
 import AddPathForm from '../components/AddPathForm'
@@ -9,10 +9,14 @@ const AddPathModal = () => {
   const [markers, setMarkers] = useState([] as IMarker[])
   const [length, setLength] = useState('0 m')
 
+  useEffect(() => {
+    console.log(markers)
+  }, [markers])
+
   return (
     <ScrollView>
       <Map setMarkers={setMarkers} markers={markers} length={length} setLength={setLength} />
-      <AddPathForm />
+      <AddPathForm markers={markers} />
       <Toast ref={(ref) => Toast.setRef(ref)} />
     </ScrollView>
   )
