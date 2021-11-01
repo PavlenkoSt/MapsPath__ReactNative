@@ -8,9 +8,10 @@ import { useStore } from '../store'
 
 type PathPropsType = {
   route: any
+  navigation: any
 }
 
-const Path: FC<PathPropsType> = ({ route }) => {
+const Path: FC<PathPropsType> = ({ route, navigation }) => {
   const { routesStore } = useStore()
 
   const activeRoute = routesStore.getRouteById(route.params.id)
@@ -23,7 +24,12 @@ const Path: FC<PathPropsType> = ({ route }) => {
     <ScrollView>
       <PathInfo route={activeRoute} />
       <Map editMode={false} markers={activeRoute.markers} length={activeRoute.length} />
-      <PathActions id={activeRoute.id} favourite={activeRoute.favourite} />
+      <PathActions
+        id={activeRoute.id}
+        favourite={activeRoute.favourite}
+        navigation={navigation}
+        title={activeRoute.title}
+      />
     </ScrollView>
   )
 }
