@@ -9,14 +9,10 @@ const AddPathModal = () => {
   const [markers, setMarkers] = useState([] as IMarker[])
   const [length, setLength] = useState(0)
 
-  useEffect(() => {
-    console.log(markers)
-  }, [markers])
-
   return (
     <ScrollView>
       <Map setMarkers={setMarkers} markers={markers} length={length} setLength={setLength} />
-      <AddPathForm markers={markers} length={length} />
+      <AddPathForm markers={markers} length={length} setMarkers={setMarkers} setLength={setLength} />
       <Toast ref={(ref) => Toast.setRef(ref)} />
     </ScrollView>
   )

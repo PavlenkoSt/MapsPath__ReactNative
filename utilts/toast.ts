@@ -8,6 +8,14 @@ const toast = {
       text1: 'Error',
       text2: message,
     })
+  },
+  showSuccess: (message: string) => {
+    Toast.show({
+      type: 'success',
+      position: 'bottom',
+      text1: 'Success',
+      text2: message,
+    })
   }
 }
 

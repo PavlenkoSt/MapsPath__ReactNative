@@ -1,28 +1,33 @@
-import React, { FC, useState } from 'react'
+import React, { Dispatch, FC, SetStateAction, useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
 import { Formik } from 'formik'
 import IMarker from '../models/marker'
 import { useStore } from '../store'
 import toast from '../utilts/toast'
 
-
 type AddPathFormPropsType = {
   markers: IMarker[]
   length: number
+  setMarkers: Dispatch<SetStateAction<IMarker[]>>
+  setLength: Dispatch<SetStateAction<number>>
 }
 
-const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length }) => {
+const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length, setMarkers, setLength }) => {
   const [limit, setLimit] = useState(0)
 
   const { routesStore } = useStore()
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: any, { resetForm }: any) => {
     if (!values.title || !values.shortDesc || !values.fullDesc) {
       return toast.showError('Fill in all the fields')
     }
 
     if (limit > 160) {
-      return toast.showError('Short description can\'t be more then 160')
+      return toast.showError("Short description can't be more then 160")
+    }
+
+    if (markers.length < 2){
+      return toast.showError("You should add 2 or more markers on map")
     }
 
     routesStore.addRoute({
@@ -30,8 +35,14 @@ const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length }) => {
       id: Date.now().toString(),
       markers,
       length,
-      ...values
+      ...values,
     })
+
+    setMarkers([])
+    setLength(0)
+    resetForm()
+
+    return toast.showSuccess('Route was added')
   }
 
   return (
