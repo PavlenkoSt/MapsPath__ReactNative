@@ -6,45 +6,52 @@ import convertUnit from '../utilts/convertUnit'
 import getFullDistance from '../utilts/getFullDistance'
 
 type MapPropsType = {
-  setMarkers: Dispatch<SetStateAction<IMarker[]>>
-  setLength: Dispatch<SetStateAction<number>>
+  setMarkers?: Dispatch<SetStateAction<IMarker[]>>
+  setLength?: Dispatch<SetStateAction<number>>
   markers: IMarker[]
   length: number
+  editMode: boolean
 }
 
 type CoordinatesType = { latitude: number; longitude: number }
 
-const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength }) => {
+const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMode }) => {
   const addMarker = (coordinates: CoordinatesType) => {
-    setMarkers([...markers, { ...coordinates, id: Date.now() }])
+    if (editMode && setMarkers) {
+      setMarkers([...markers, { ...coordinates, id: Date.now() }])
+    }
   }
 
   const changeMarkerPosition = (id: number, newPosition: CoordinatesType) => {
-    setMarkers(
-      markers.map((marker) => {
-        if (marker.id === id) {
-          marker = { ...marker, ...newPosition }
-        }
-        return marker
-      })
-    )
+    if (editMode && setMarkers) {
+      setMarkers(
+        markers.map((marker) => {
+          if (marker.id === id) {
+            marker = { ...marker, ...newPosition }
+          }
+          return marker
+        })
+      )
+    }
   }
 
   useEffect(() => {
-    setLength(getFullDistance(markers))
+    if (editMode && setLength) setLength(getFullDistance(markers))
   }, [markers])
+
+  const initialRegion = {
+    latitude: editMode ? 49.4285 : markers?.[0]?.latitude,
+    longitude: editMode ? 32.0621 : markers?.[0]?.longitude,
+    latitudeDelta: 0.0822,
+    longitudeDelta: 0.0421,
+  }
 
   return (
     <View>
       <MapView
-        initialRegion={{
-          latitude: 49.4285,
-          longitude: 32.0621,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        initialRegion={initialRegion}
         style={styles.map}
-        onPress={(e) => addMarker(e.nativeEvent.coordinate)}
+        onPress={(e) => editMode && addMarker(e.nativeEvent.coordinate)}
       >
         {markers.map((marker) => (
           <Marker
@@ -53,7 +60,7 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength }) => {
               latitude: marker.latitude,
               longitude: marker.longitude,
             }}
-            draggable={true}
+            draggable={editMode}
             onDragEnd={(e) => changeMarkerPosition(marker.id, e.nativeEvent.coordinate)}
           />
         ))}

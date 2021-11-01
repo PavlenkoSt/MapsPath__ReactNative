@@ -14,8 +14,20 @@ const AddPathModal: FC<AddPathModalPropsType> = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <Map setMarkers={setMarkers} markers={markers} length={length} setLength={setLength} />
-      <AddPathForm markers={markers} length={length} setMarkers={setMarkers} setLength={setLength} navigation={navigation} />
+      <Map
+        setMarkers={setMarkers}
+        markers={markers}
+        length={length}
+        setLength={setLength}
+        editMode={true}
+      />
+      <AddPathForm
+        markers={markers}
+        length={length}
+        setMarkers={setMarkers}
+        setLength={setLength}
+        navigation={navigation}
+      />
     </ScrollView>
   )
 }

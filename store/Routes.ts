@@ -2,27 +2,7 @@ import { action, computed, makeAutoObservable, observable } from 'mobx'
 import IRoute from '../models/Route'
 
 class Routes {
-  @observable routes: IRoute[] = [
-    {
-      id: '1',
-      favourite: true,
-      fullDesc: 'full desc',
-      length: 200,
-      markers: [],
-      shortDesc:
-        'short desc short desc short desc short desc short desc short desc short desc short desc',
-      title: 'title',
-    },
-    {
-      id: '2',
-      favourite: false,
-      fullDesc: 'full desc 2',
-      length: 200,
-      markers: [],
-      shortDesc: 'short desc',
-      title: 'title 2',
-    },
-  ]
+  @observable routes: IRoute[] = []
 
   constructor() {
     makeAutoObservable(this)

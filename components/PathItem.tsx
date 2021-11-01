@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import IRoute from '../models/Route'
+import convertUnit from '../utilts/convertUnit'
 
 type PathItemPropsType = {
   route: IRoute
@@ -22,7 +23,7 @@ const PathItem: FC<PathItemPropsType> = ({ route, toPathPage }) => {
           </Text>
         </View>
         <View style={styles.end}>
-          <Text style={styles.length}>{route.length}</Text>
+          <Text style={styles.length}>{convertUnit(route.length)}</Text>
           <Image style={styles.imgArr} source={require('../icons/arrow.png')} />
         </View>
       </View>
