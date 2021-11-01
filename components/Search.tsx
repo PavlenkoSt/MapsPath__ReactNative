@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
     borderColor: '#333',
     borderWidth: 2,
     padding: 10,
-    fontSize: 20,
+    fontSize: 16,
     paddingRight: 40,
   },
   container: {
     position: 'relative',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   img: {
     width: 20,

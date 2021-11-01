@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   imgLogo: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
     marginRight: 10,
   },
   center: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '700',
     color: '#333',
     marginRight: 5,
@@ -68,15 +68,15 @@ const styles = StyleSheet.create({
     height: 20,
   },
   desc: {
-    fontSize: 17,
+    fontSize: 16,
   },
   end: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   length: {
-    fontSize: 20,
-    marginRight: 10,
+    fontSize: 16,
+    marginRight: 5,
   },
   imgArr: {
     width: 30,

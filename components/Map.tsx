@@ -73,10 +73,12 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMod
           strokeWidth={2}
         />
       </MapView>
-      <View style={styles.footer}>
-        <Image source={require('../icons/location.png')} style={styles.pic} />
-        <Text style={styles.length}>Lenght: {convertUnit(length)}</Text>
-      </View>
+      {editMode && (
+        <View style={styles.footer}>
+          <Image source={require('../icons/location.png')} style={styles.pic} />
+          <Text style={styles.length}>Lenght: {convertUnit(length)}</Text>
+        </View>
+      )}
     </View>
   )
 }

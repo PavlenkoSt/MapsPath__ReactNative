@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import AddPathForm from '../components/AddPathForm'
 import Map from '../components/Map'
 import IMarker from '../models/marker'

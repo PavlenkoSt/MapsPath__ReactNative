@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#333',
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: '700',
     marginRight: 5,
   },
@@ -52,10 +52,10 @@ const styles = StyleSheet.create({
   },
   length: {
     color: '#333',
-    fontSize: 20,
+    fontSize: 16,
   },
   desc: {
-    fontSize: 20,
+    fontSize: 16,
     marginBottom: 10,
   },
 })
