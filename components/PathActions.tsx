@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import React, { FC } from 'react'
 import { Button, StyleSheet, View } from 'react-native'
 import { useStore } from '../store'
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default PathActions
+export default observer(PathActions)

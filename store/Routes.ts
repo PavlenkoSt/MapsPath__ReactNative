@@ -13,7 +13,7 @@ class Routes {
   }
 
   @action addRoute(route: IRoute) {
-    this.routes.push(route)
+    this.routes.unshift(route)
   }
 
   @action removeRoute(id: string) {
@@ -27,6 +27,10 @@ class Routes {
 
   @action getRouteById(id: string) {
     return this.routes.find((route) => route.id === id)
+  }
+
+  @computed get sortedRoutes () {
+    return this.routes.slice().sort((a, b) => +b.favourite - +a.favourite)
   }
 }
 

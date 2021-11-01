@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { ScrollView } from 'react-native'
 import PathList from '../components/PathList'
 import Search from '../components/Search'
@@ -15,7 +15,7 @@ const Home: FC<HomePropsType> = ({ navigation }) => {
 
   const { routesStore } = useStore()
 
-  const { searchedRoutes, setSearchVal } = useSearch(routesStore.routes)
+  const { searchedRoutes, setSearchVal } = useSearch(routesStore.sortedRoutes)
 
   return (
     <ScrollView>
