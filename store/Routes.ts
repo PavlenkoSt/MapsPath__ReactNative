@@ -41,8 +41,13 @@ class Routes {
   }
 
   @action async addRouteRealm(route: IRoute) {
-    this.addRoute(route)
     await (await realm).addRoute(route)
+    this.addRoute(route)
+  }
+
+  @action async toggleFavouriteRouteRealm(id: string) {
+    await (await realm).changeFavouriteStatus(id)
+    this.toggleFavouriteRoute(id)
   }
 
   @computed get sortedRoutes() {

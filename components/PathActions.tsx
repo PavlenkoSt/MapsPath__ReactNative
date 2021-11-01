@@ -14,13 +14,13 @@ type PathActionsPropsType = {
 const PathActions: FC<PathActionsPropsType> = ({ id, favourite, navigation, title }) => {
   const { routesStore } = useStore()
 
-  const changeFavouriteStatus = () => {
-    routesStore.toggleFavouriteRoute(id)
+  const changeFavouriteStatus = async () => {
+    await routesStore.toggleFavouriteRouteRealm(id)
     toast.showSuccess(favourite ? 'Removed from favourites' : 'Added to favourites')
   }
 
-  const removePath = () => {
-    routesStore.removeRouteRealm(id)
+  const removePath = async () => {
+    await routesStore.removeRouteRealm(id)
     navigation.navigate('Home')
     toast.showSuccess(`Path "${title}" was deleted`)
   }

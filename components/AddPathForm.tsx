@@ -4,7 +4,6 @@ import { Formik } from 'formik'
 import IMarker from '../models/marker'
 import { useStore } from '../store'
 import toast from '../utilts/toast'
-import realm from '../realm'
 
 type AddPathFormPropsType = {
   markers: IMarker[]
@@ -40,15 +39,13 @@ const AddPathForm: FC<AddPathFormPropsType> = ({
 
     const id = Date.now().toString()
 
-    const route = {
+    await routesStore.addRouteRealm({
       favourite: false,
       id,
       markers,
       length,
       ...values,
-    }
-
-    routesStore.addRouteRealm(route)
+    })
 
     setMarkers([])
     setLength(0)

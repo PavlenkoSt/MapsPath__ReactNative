@@ -14,6 +14,8 @@ import store, { useStore } from './store'
 import { observer } from 'mobx-react-lite'
 import PublicRoutes from './routes/publicRoutes'
 import Toast from 'react-native-toast-message'
+import realm from './realm'
+import IRoute from './models/Route'
 
 const App = () => {
   const { routesStore } = useStore()
