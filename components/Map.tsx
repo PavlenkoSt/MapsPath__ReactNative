@@ -2,13 +2,14 @@ import React, { Dispatch, FC, SetStateAction, useEffect } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 import IMarker from '../models/marker'
+import convertUnit from '../utilts/convertUnit'
 import getFullDistance from '../utilts/getFullDistance'
 
 type MapPropsType = {
   setMarkers: Dispatch<SetStateAction<IMarker[]>>
-  setLength: Dispatch<SetStateAction<string>>
+  setLength: Dispatch<SetStateAction<number>>
   markers: IMarker[]
-  length: string
+  length: number
 }
 
 type CoordinatesType = { latitude: number; longitude: number }
@@ -67,7 +68,7 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength }) => {
       </MapView>
       <View style={styles.footer}>
         <Image source={require('../icons/location.png')} style={styles.pic} />
-        <Text style={styles.length}>Lenght: {length}</Text>
+        <Text style={styles.length}>Lenght: {convertUnit(length)}</Text>
       </View>
     </View>
   )

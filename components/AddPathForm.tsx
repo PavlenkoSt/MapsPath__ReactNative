@@ -8,9 +8,10 @@ import toast from '../utilts/toast'
 
 type AddPathFormPropsType = {
   markers: IMarker[]
+  length: number
 }
 
-const AddPathForm: FC<AddPathFormPropsType> = ({ markers }) => {
+const AddPathForm: FC<AddPathFormPropsType> = ({ markers, length }) => {
   const [limit, setLimit] = useState(0)
 
   const { routesStore } = useStore()
@@ -23,11 +24,14 @@ const AddPathForm: FC<AddPathFormPropsType> = ({ markers }) => {
     if (limit > 160) {
       return toast.showError('Short description can\'t be more then 160')
     }
-    console.log(values)
 
-    // routesStore.addRoute({
-
-    // })
+    routesStore.addRoute({
+      favourite: false,
+      id: Date.now().toString(),
+      markers,
+      length,
+      ...values
+    })
   }
 
   return (

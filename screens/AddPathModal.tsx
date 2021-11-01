@@ -7,7 +7,7 @@ import IMarker from '../models/marker'
 
 const AddPathModal = () => {
   const [markers, setMarkers] = useState([] as IMarker[])
-  const [length, setLength] = useState('0 m')
+  const [length, setLength] = useState(0)
 
   useEffect(() => {
     console.log(markers)
@@ -16,7 +16,7 @@ const AddPathModal = () => {
   return (
     <ScrollView>
       <Map setMarkers={setMarkers} markers={markers} length={length} setLength={setLength} />
-      <AddPathForm markers={markers} />
+      <AddPathForm markers={markers} length={length} />
       <Toast ref={(ref) => Toast.setRef(ref)} />
     </ScrollView>
   )
