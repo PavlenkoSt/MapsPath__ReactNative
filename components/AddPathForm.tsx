@@ -48,9 +48,7 @@ const AddPathForm: FC<AddPathFormPropsType> = ({
       ...values,
     }
 
-    routesStore.addRoute(route)
-
-    await (await realm).addRoute(route)
+    routesStore.addRouteRealm(route)
 
     setMarkers([])
     setLength(0)

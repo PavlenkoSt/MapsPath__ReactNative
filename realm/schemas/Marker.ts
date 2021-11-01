@@ -4,8 +4,8 @@ const MarkerSchema: ObjectSchema = {
   name: 'Marker',
   properties: {
     id: { type: 'string' },
-    longitude: { type: 'int' },
-    latitude: { type: 'int' },
+    longitude: { type: 'float' },
+    latitude: { type: 'float' },
   },
   primaryKey: 'id',
 }

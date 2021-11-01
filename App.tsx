@@ -14,13 +14,12 @@ import store, { useStore } from './store'
 import { observer } from 'mobx-react-lite'
 import PublicRoutes from './routes/publicRoutes'
 import Toast from 'react-native-toast-message'
-import realm from './realm'
 
 const App = () => {
   const { routesStore } = useStore()
 
   useEffect(() => {
-    routesStore.setRoutesFromDB()
+    routesStore.setRoutesRealm()
   }, [])
 
   return (

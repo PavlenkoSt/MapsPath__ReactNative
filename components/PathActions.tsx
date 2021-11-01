@@ -20,7 +20,7 @@ const PathActions: FC<PathActionsPropsType> = ({ id, favourite, navigation, titl
   }
 
   const removePath = () => {
-    routesStore.removeRoute(id)
+    routesStore.removeRouteRealm(id)
     navigation.navigate('Home')
     toast.showSuccess(`Path "${title}" was deleted`)
   }

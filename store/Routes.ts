@@ -30,12 +30,22 @@ class Routes {
     return this.routes.find((route) => route.id === id)
   }
 
-  @action async setRoutesFromDB (){
+  @action async setRoutesRealm() {
     const routes = await (await realm).getAllRoutes()
     this.setRoutes(routes as unknown as IRoute[])
   }
 
-  @computed get sortedRoutes () {
+  @action async removeRouteRealm(id: string) {
+    await (await realm).deleteRoute(id)
+    this.removeRoute(id)
+  }
+
+  @action async addRouteRealm(route: IRoute) {
+    this.addRoute(route)
+    await (await realm).addRoute(route)
+  }
+
+  @computed get sortedRoutes() {
     return this.routes.slice().sort((a, b) => +b.favourite - +a.favourite)
   }
 }
