@@ -22,7 +22,8 @@
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
     "react-native-svg-uri": "^1.2.3",
-    "react-native-toast-message": "^1.6.0"
+    "react-native-toast-message": "^1.6.0",
+    "realm": "^10.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
