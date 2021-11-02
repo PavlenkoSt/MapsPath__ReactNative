@@ -9,21 +9,12 @@ class Routes {
     makeAutoObservable(this)
   }
 
-  @action setRoutes(routes: IRoute[]) {
+  @action _setRoutes(routes: IRoute[]) {
     this.routes = routes
   }
 
-  @action addRoute(route: IRoute) {
-    this.routes.unshift(route)
-  }
-
-  @action removeRoute(id: string) {
+  @action _removeRoute(id: string) {
     this.routes = this.routes.filter((route) => route.id !== id)
-  }
-
-  @action toggleFavouriteRoute(id: string) {
-    const target = this.routes.find((route) => route.id === id)
-    if (target) target.favourite = !target.favourite
   }
 
   @action getRouteById(id: string) {
@@ -32,22 +23,23 @@ class Routes {
 
   @action async setRoutesRealm() {
     const routes = await (await realm).getAllRoutes()
-    this.setRoutes(routes as unknown as IRoute[])
+    routes.addListener((list) => {
+      return this._setRoutes([...list] as unknown as IRoute[])
+    })
+    return routes.removeAllListeners
   }
 
   @action async removeRouteRealm(id: string) {
+    this._removeRoute(id)
     await (await realm).deleteRoute(id)
-    this.removeRoute(id)
   }
 
   @action async addRouteRealm(route: IRoute) {
     await (await realm).addRoute(route)
-    this.addRoute(route)
   }
 
   @action async toggleFavouriteRouteRealm(id: string) {
     await (await realm).changeFavouriteStatus(id)
-    this.toggleFavouriteRoute(id)
   }
 
   @computed get sortedRoutes() {

@@ -10,8 +10,7 @@ const initRealm = async () => {
   })
 
   const getAllRoutes = () => {
-    const list = realm.objects('Route')
-    return [...list]
+    return realm.objects('Route')
   }
 
   const addRoute = (route: IRoute) => {
@@ -21,9 +20,8 @@ const initRealm = async () => {
   }
 
   const deleteRoute = (id: string) => {
-    let target: any
     realm.write(() => {
-      target = realm.objectForPrimaryKey('Route', id)
+      const target = realm.objectForPrimaryKey('Route', id)
       realm.delete(target)
     })
   }
@@ -31,10 +29,7 @@ const initRealm = async () => {
   const changeFavouriteStatus = (id: string) => {
     realm.write(() => {
       const target = realm.objectForPrimaryKey('Route', id) as IRoute
-      if (target && target.favourite) {
-        target.favourite = !target.favourite
-        return target.favourite
-      }
+      target.favourite = !target.favourite
     })
   }
 

@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { ScrollView } from 'react-native'
 import PathList from '../components/PathList'
 import Search from '../components/Search'

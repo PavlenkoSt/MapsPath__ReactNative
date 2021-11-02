@@ -19,9 +19,9 @@ const PathActions: FC<PathActionsPropsType> = ({ id, favourite, navigation, titl
     toast.showSuccess(favourite ? 'Removed from favourites' : 'Added to favourites')
   }
 
-  const removePath = async () => {
-    await routesStore.removeRouteRealm(id)
+  const removePath = () => {
     navigation.navigate('Home')
+    routesStore.removeRouteRealm(id)
     toast.showSuccess(`Path "${title}" was deleted`)
   }
 
