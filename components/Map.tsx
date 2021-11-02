@@ -18,11 +18,25 @@ type MapPropsType = {
 type CoordinatesType = { latitude: number; longitude: number }
 
 const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMode }) => {
-  const [isVertical, setIsVertical] = useState(true)
+  const [isVertical, setIsVertical] = useState(
+    Dimensions.get('screen').height > Dimensions.get('screen').width
+  )
 
   useEffect(() => {
     if (editMode && setLength) setLength(getFullDistance(markers))
   }, [markers])
+
+  useEffect(() => {
+    const eventEmitter = Dimensions.addEventListener('change', ({ screen }) => {
+      if (screen.height > screen.width) {
+        setIsVertical(true)
+      } else {
+        setIsVertical(false)
+      }
+    })
+    
+    return () => eventEmitter.remove()
+  }, [])
 
   const addMarker = (coordinates: CoordinatesType) => {
     if (editMode && setMarkers) {
@@ -49,14 +63,6 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMod
     latitudeDelta: 0.0822,
     longitudeDelta: 0.0421,
   }
-
-  Dimensions.addEventListener('change', ({ screen }) => {
-    if (screen.height > screen.width) {
-      setIsVertical(true)
-    } else {
-      setIsVertical(false)
-    }
-  })
 
   return (
     <View>
