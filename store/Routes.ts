@@ -4,6 +4,7 @@ import realm from '../realm'
 
 class Routes {
   @observable routes: IRoute[] = []
+  @observable loading: boolean = false
 
   constructor() {
     makeAutoObservable(this)
@@ -21,12 +22,18 @@ class Routes {
     return this.routes.find((route) => route.id === id)
   }
 
+  @action setLoading(loading: boolean) {
+    this.loading = loading
+  }
+
   @action async setRoutesRealm() {
     const routes = await (await realm).getAllRoutes()
+
     routes.addListener((list) => {
-      return this._setRoutes([...list] as unknown as IRoute[])
+      this.setLoading(true)
+      this._setRoutes([...list] as unknown as IRoute[])
+      this.setLoading(false)
     })
-    return routes.removeAllListeners
   }
 
   @action async removeRouteRealm(id: string) {

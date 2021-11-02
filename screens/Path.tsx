@@ -16,6 +16,10 @@ const Path: FC<PathPropsType> = ({ route, navigation }) => {
 
   const activeRoute = routesStore.getRouteById(route.params.id)
 
+  if (routesStore.loading) {
+    return <Text>Loading...</Text>
+  }
+
   if (!activeRoute) {
     return <Text>Ooops. Some error.</Text>
   }
