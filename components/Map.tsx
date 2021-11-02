@@ -1,9 +1,11 @@
-import React, { Dispatch, FC, SetStateAction, useEffect } from 'react'
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import MapView, { Marker, Polyline } from 'react-native-maps'
 import IMarker from '../models/marker'
 import convertUnit from '../utilts/convertUnit'
 import getFullDistance from '../utilts/getFullDistance'
+
+import { Dimensions } from 'react-native'
 
 type MapPropsType = {
   setMarkers?: Dispatch<SetStateAction<IMarker[]>>
@@ -16,6 +18,12 @@ type MapPropsType = {
 type CoordinatesType = { latitude: number; longitude: number }
 
 const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMode }) => {
+  const [isVertical, setIsVertical] = useState(true)
+
+  useEffect(() => {
+    if (editMode && setLength) setLength(getFullDistance(markers))
+  }, [markers])
+
   const addMarker = (coordinates: CoordinatesType) => {
     if (editMode && setMarkers) {
       setMarkers([...markers, { ...coordinates, id: Date.now().toString() }])
@@ -35,10 +43,6 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMod
     }
   }
 
-  useEffect(() => {
-    if (editMode && setLength) setLength(getFullDistance(markers))
-  }, [markers])
-
   const initialRegion = {
     latitude: editMode ? 49.4285 : markers?.[0]?.latitude,
     longitude: editMode ? 32.0621 : markers?.[0]?.longitude,
@@ -46,11 +50,19 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMod
     longitudeDelta: 0.0421,
   }
 
+  Dimensions.addEventListener('change', ({ screen }) => {
+    if (screen.height > screen.width) {
+      setIsVertical(true)
+    } else {
+      setIsVertical(false)
+    }
+  })
+
   return (
     <View>
       <MapView
         initialRegion={initialRegion}
-        style={styles.map}
+        style={{ ...styles.map, height: isVertical ? 400 : 200 }}
         onPress={(e) => editMode && addMarker(e.nativeEvent.coordinate)}
       >
         {markers.map((marker) => (
@@ -86,7 +98,6 @@ const Map: FC<MapPropsType> = ({ setMarkers, markers, length, setLength, editMod
 const styles = StyleSheet.create({
   map: {
     width: '100%',
-    height: 400,
     marginBottom: 10,
   },
   footer: {
