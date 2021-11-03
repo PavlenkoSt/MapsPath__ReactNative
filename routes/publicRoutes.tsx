@@ -19,7 +19,7 @@ const pathHeaderStyles = {
   headerTitleStyle: {
     fontWeight: 'bold',
   },
-  contentStyle: { paddingHorizontal: 5, paddingVertical: 10, backgroundColor: '#EBFFFC' },
+  contentStyle: { padding: 10, backgroundColor: '#EBFFFC' },
 }
 
 const PublicRoutes = () => {
