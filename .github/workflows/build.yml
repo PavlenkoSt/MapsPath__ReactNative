@@ -31,11 +31,6 @@ jobs:
       - name: make gradlew executable
         run: chmod +x ./android/gradlew
 
-      - name: Bundle RN Android assets
-        run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
-      - name: Clean up after bundling
-        run: rm -rf ./android/app/src/main/res/drawable-* && rm -rf ./android/app/src/main/res/raw
-
       - name: Build android APK
         run: cd ./android && ./gradlew clean app:assembleRelease -x bundleReleaseJsAndAssets
 
