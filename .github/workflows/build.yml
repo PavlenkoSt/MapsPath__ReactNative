@@ -19,11 +19,22 @@ jobs:
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
 
-      - name: Build APK
+      - name: Build APK debug
         run: |
           cd android && ./gradlew assembleDebug
-      - name: Upload APK
+
+      - name: Build APK release
+        run: |
+          cd android && ./gradlew assembleRelease
+
+      - name: Upload APK debug
         uses: actions/upload-artifact@v2
         with:
           name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload APK release
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: android/app/build/outputs/apk/release/app-release.apk
