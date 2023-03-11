@@ -15,9 +15,13 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install
+
+      - name: Make Gradlew Executable
+        run: cd android && chmod +x ./gradlew
+
       - name: Build APK
         run: |
-          cd android && sudo ./gradlew assembleDebug
+          cd android && ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
