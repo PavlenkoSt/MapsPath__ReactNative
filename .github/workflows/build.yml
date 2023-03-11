@@ -17,7 +17,7 @@ jobs:
           yarn install
       - name: Build APK
         run: |
-          cd android && ./gradlew assembleDebug
+          cd android && sudo ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
